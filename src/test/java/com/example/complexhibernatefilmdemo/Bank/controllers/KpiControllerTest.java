@@ -13,7 +13,7 @@ class KpiControllerTest {
     private KpiController controller;
 
     @Test
-    public void contextLoads() throws Exception {
+    public void contextLoads(){
         assertThat(controller).isNotNull();
     }
 

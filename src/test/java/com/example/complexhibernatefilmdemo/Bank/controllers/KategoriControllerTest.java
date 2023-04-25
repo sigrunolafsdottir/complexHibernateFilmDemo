@@ -38,6 +38,7 @@ class KategoriControllerTest {
 
     @BeforeEach
     public void init() {
+
         Kategori k1 = new Kategori(1L, "guld", null);
         Kategori k2 = new Kategori(2L, "silver", null);
         Kategori k3 = new Kategori(3L, "brons", null);

@@ -38,7 +38,16 @@ public class KundController {
         return kundRepo.findAll();
     }
 
-    @RequestMapping("kunder/add")
+    @RequestMapping("kunder/add1")
+    public String addKunder1(@RequestParam String namn, @RequestParam String ssn,
+                             @RequestParam int cred){
+        Kpi kpi = new Kpi(cred);
+        repo.save(kpi);
+        kundRepo.save(new Kund(namn, ssn, kpi));
+        return "kund "+namn+" added (1) ";
+    }
+
+    @RequestMapping("kunder/add0")
     public String addKunder(@RequestParam String namn, @RequestParam String ssn,
                             @RequestParam Long id){
         Kpi kpi = repo.findById(id).get();
@@ -62,7 +71,7 @@ public class KundController {
         kundRepo.deleteById(id);
         return "kund "+id+" togs bort";
     }
-
+/*
     //Nedanstående hör till N-1-filmen
 
     @RequestMapping("kunder/add3")
@@ -99,5 +108,5 @@ public class KundController {
         return "konto lades till hos kund med id "+kundId;
     }
 
-
+*/
 }

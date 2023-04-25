@@ -37,8 +37,8 @@ public class ComplexHibernateFilmDemoApplication {
             kpirepo.save(k3);
 
             Kund kund1 = new Kund("Mimmi", "435255", k1);
-            Kund kund2 = new Kund("Mimmi", "435255", k2);
-            Kund kund3 = new Kund("Mimmi", "435255", k3);
+            Kund kund2 = new Kund("Nisse", "6757557", k2);
+            Kund kund3 = new Kund("Putte", "3245353", k3);
 
             kundRepo.save(kund1);
             kundRepo.save(kund2);
@@ -46,25 +46,25 @@ public class ComplexHibernateFilmDemoApplication {
         };
     }
 */
-/*
+
     //Denna Bootstrapping-metod passar i Cascade-filmen
     @Bean
     public CommandLineRunner demo(KpiRepo kpirepo, KundRepo kundRepo){
         return (args) -> {
-            Kpi k1 = new Kpi(45);
-            Kpi k2 = new Kpi(76);
-            Kpi k3 = new Kpi(3);
+            Kpi k1 = new Kpi(87);
+            Kpi k2 = new Kpi(456);
+            Kpi k3 = new Kpi(33);
 
             Kund kund1 = new Kund("Mimmi", "435255", k1);
-            Kund kund2 = new Kund("Mimmi", "435255", k2);
-            Kund kund3 = new Kund("Mimmi", "435255", k3);
+            Kund kund2 = new Kund("Nisse", "65464654", k2);
+            Kund kund3 = new Kund("Kalle", "8768686", k3);
 
             kundRepo.save(kund1);
             kundRepo.save(kund2);
             kundRepo.save(kund3);
         };
     }
-*/
+
 
 /*
 //Denna Bootstrapping-metod används i 1-N-filmen
