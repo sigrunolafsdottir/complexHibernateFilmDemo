@@ -2,6 +2,7 @@ package com.example.complexhibernatefilmdemo.Bank.controllers;
 
 import com.example.complexhibernatefilmdemo.Bank.models.Kategori;
 import com.example.complexhibernatefilmdemo.Bank.repos.KategoriRepo;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +11,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Arrays;
 import java.util.Optional;
 
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -82,6 +81,22 @@ class KategoriControllerTest {
         this.mvc.perform(get("/kategori?id=1"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{\"name\":\"guld\",\"id\":1,\"kunder\":null}"));
+    }
+
+    @Test
+    void getKategoriByIdExperiment() throws Exception {
+        MvcResult result= this.mvc.perform(get("/kategori?id=1"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("{\"name\":\"guld\",\"id\":1,\"kunder\":null}"))
+                .andReturn();
+
+        String content = result.getResponse().getContentAsString();
+        System.out.println(content);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        Kategori kategori = objectMapper.readValue(content, Kategori.class);
+        System.out.println("klass: "+kategori.getClass());
+
     }
 
     @Test
